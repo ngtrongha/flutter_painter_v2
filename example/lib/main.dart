@@ -81,7 +81,9 @@ class _FlutterPainterExampleState extends State<FlutterPainterExample> {
             text: TextSettings(
               focusNode: textFocusNode,
               textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold, color: red, fontSize: 18),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontSize: 18),
             ),
             freeStyle: const FreeStyleSettings(
               color: red,

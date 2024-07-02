@@ -1,8 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-
-import 'object_drawable.dart';
+import 'package:flutter_painter/flutter_painter.dart';
 
 /// Text Drawable
 class TextDrawable extends ObjectDrawable {
@@ -58,6 +57,13 @@ class TextDrawable extends ObjectDrawable {
     // It is shifted back by half of its width and height to be drawn in the center
     textPainter.paint(canvas,
         position - Offset(textPainter.width / 2, textPainter.height / 2));
+    final paint = Paint()
+      ..color = Colors.white.withOpacity(0.5)
+      ..style = PaintingStyle.fill; // Fill the rectangle
+
+    final rect =
+        Rect.fromLTWH(120.0, 50.0, 150.0, 200.0); // Define rectangle dimensions
+    canvas.drawRect(rect, paint);
   }
 
   /// Creates a copy of this but with the given fields replaced with the new values.
