@@ -83,7 +83,7 @@ class TextDrawable extends ObjectDrawable {
     canvas.drawRRect(rect, paint);
 
     final fillPaint = Paint()
-      ..color = Colors.white.withOpacity(0.7)
+      ..color = Colors.white.withOpacity(backgroundOpacity ?? 0.7)
       ..style = PaintingStyle.fill;
     canvas.drawRRect(rect, fillPaint);
   }
