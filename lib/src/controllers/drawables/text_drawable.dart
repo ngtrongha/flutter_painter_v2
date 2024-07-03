@@ -62,7 +62,7 @@ class TextDrawable extends ObjectDrawable {
     textPainter.paint(canvas,
         position - Offset(textPainter.width / 2, textPainter.height / 2));
     final paint = Paint()
-      ..color = Colors.white.withOpacity(0.5)
+      ..color = Colors.white.withOpacity(backgroundOpacity ?? 0.5)
       ..style = PaintingStyle.fill; // Fill the rectangle
     final height = textPainter.height;
     final width = textPainter.width;
