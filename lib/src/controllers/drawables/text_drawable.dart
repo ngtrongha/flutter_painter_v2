@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_painter/flutter_painter.dart';
+// import 'package:flutter_painter/flutter_painter.dart';
+import 'package:flutter_painter_v2/flutter_painter.dart';
 
 /// Text Drawable
 class TextDrawable extends ObjectDrawable {
