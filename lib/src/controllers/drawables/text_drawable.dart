@@ -1,8 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-// import 'package:flutter_painter/flutter_painter.dart';
-import 'package:flutter_painter_v2/flutter_painter.dart';
+import 'package:flutter_painter/flutter_painter.dart';
+// import 'package:flutter_painter_v2/flutter_painter.dart';
 
 /// Text Drawable
 class TextDrawable extends ObjectDrawable {
@@ -62,19 +62,30 @@ class TextDrawable extends ObjectDrawable {
     textPainter.paint(canvas,
         position - Offset(textPainter.width / 2, textPainter.height / 2));
     final paint = Paint()
-      ..color = Colors.white.withOpacity(backgroundOpacity ?? 0.5)
-      ..style = PaintingStyle.fill; // Fill the rectangle
+      ..color = Colors.white
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 2; // Fill the rectangle
     final height = textPainter.height;
     final width = textPainter.width;
 
-    final rect = Rect.fromLTWH(
-        (position - Offset(textPainter.width / 2, textPainter.height / 2)).dx -
-            10,
-        (position - Offset(textPainter.width / 2, textPainter.height / 2)).dy -
-            10,
-        width + 20,
-        height + 20); // Define rectangle dimensions
-    canvas.drawRect(rect, paint);
+    final rect = RRect.fromRectAndRadius(
+      Rect.fromLTWH(
+          (position - Offset(textPainter.width / 2, textPainter.height / 2))
+                  .dx -
+              10,
+          (position - Offset(textPainter.width / 2, textPainter.height / 2))
+                  .dy -
+              10,
+          width + 20,
+          height + 20),
+      const Radius.circular(8),
+    ); // Define rectangle dimensions
+    canvas.drawRRect(rect, paint);
+
+    final fillPaint = Paint()
+      ..color = Colors.white.withOpacity(0.7)
+      ..style = PaintingStyle.fill;
+    canvas.drawRRect(rect, fillPaint);
   }
 
   /// Creates a copy of this but with the given fields replaced with the new values.
