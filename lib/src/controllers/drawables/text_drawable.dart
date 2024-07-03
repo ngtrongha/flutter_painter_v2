@@ -20,6 +20,8 @@ class TextDrawable extends ObjectDrawable {
   /// Creates a [TextDrawable] to draw [text].
   ///
   /// The path will be drawn with the passed [style] if provided.
+
+  final double? backgroundOpacity;
   TextDrawable({
     required this.text,
     required Offset position,
@@ -32,6 +34,7 @@ class TextDrawable extends ObjectDrawable {
     this.direction = TextDirection.ltr,
     bool locked = false,
     bool hidden = false,
+    this.backgroundOpacity,
     Set<ObjectDrawableAssist> assists = const <ObjectDrawableAssist>{},
   })  : textPainter = TextPainter(
           text: TextSpan(text: text, style: style),
@@ -60,9 +63,16 @@ class TextDrawable extends ObjectDrawable {
     final paint = Paint()
       ..color = Colors.white.withOpacity(0.5)
       ..style = PaintingStyle.fill; // Fill the rectangle
+    final height = textPainter.height;
+    final width = textPainter.width;
 
-    final rect =
-        Rect.fromLTWH(120.0, 50.0, 150.0, 200.0); // Define rectangle dimensions
+    final rect = Rect.fromLTWH(
+        (position - Offset(textPainter.width / 2, textPainter.height / 2)).dx -
+            10,
+        (position - Offset(textPainter.width / 2, textPainter.height / 2)).dy -
+            10,
+        width + 20,
+        height + 20); // Define rectangle dimensions
     canvas.drawRect(rect, paint);
   }
 
