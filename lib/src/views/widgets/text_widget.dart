@@ -93,7 +93,7 @@ class _TextWidgetState extends State<_TextWidget> {
     final drawable = TextDrawable(
       text: 'asdasd',
       position: center,
-      style: settings.textStyle,
+      style: settings.textStyle.copyWith(color: Colors.red),
       hidden: false,
     );
     PainterController.of(context).addDrawables([drawable]);

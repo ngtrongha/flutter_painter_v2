@@ -56,11 +56,6 @@ class TextDrawable extends ObjectDrawable {
   void drawObject(Canvas canvas, Size size) {
     // Render the text according to the size of the canvas taking the scale in mind
     textPainter.layout(maxWidth: size.width * scale);
-
-    // Paint the text on the canvas
-    // It is shifted back by half of its width and height to be drawn in the center
-    textPainter.paint(canvas,
-        position - Offset(textPainter.width / 2, textPainter.height / 2));
     final paint = Paint()
       ..color = Colors.white
       ..style = PaintingStyle.stroke
@@ -86,6 +81,10 @@ class TextDrawable extends ObjectDrawable {
       ..color = Colors.white.withOpacity(backgroundOpacity ?? 0.7)
       ..style = PaintingStyle.fill;
     canvas.drawRRect(rect, fillPaint);
+    // Paint the text on the canvas
+    // It is shifted back by half of its width and height to be drawn in the center
+    textPainter.paint(canvas,
+        position - Offset(textPainter.width / 2, textPainter.height / 2));
   }
 
   /// Creates a copy of this but with the given fields replaced with the new values.
