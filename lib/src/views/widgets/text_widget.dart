@@ -66,6 +66,7 @@ class _TextWidgetState extends State<_TextWidget> {
     final drawable = notification.drawable;
 
     if (drawable is TextDrawable) {
+      openTextEditor(drawable);
       // Mark notification as handled
       return true;
     }
@@ -91,7 +92,7 @@ class _TextWidgetState extends State<_TextWidget> {
 
     // Create a new hidden empty entry in the center of the painter
     final drawable = TextDrawable(
-      text: 'asdasd',
+      text: '',
       position: center,
       style: settings.textStyle.copyWith(color: Colors.red),
       hidden: false,
@@ -103,6 +104,14 @@ class _TextWidgetState extends State<_TextWidget> {
         selectedDrawable = drawable;
       });
     }
+
+    openTextEditor(drawable, true).then((value) {
+      if (mounted) {
+        setState(() {
+          selectedDrawable = null;
+        });
+      }
+    });
   }
 
   /// Opens an editor to edit the text of [drawable].
