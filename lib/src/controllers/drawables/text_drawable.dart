@@ -21,9 +21,12 @@ class TextDrawable extends ObjectDrawable {
   /// Creates a [TextDrawable] to draw [text].
   ///
   /// The path will be drawn with the passed [style] if provided.
+  ///
+  final bool isEditable;
 
   final double? backgroundOpacity;
   TextDrawable({
+    required this.isEditable,
     required this.text,
     required Offset position,
     double rotation = 0,
@@ -99,6 +102,7 @@ class TextDrawable extends ObjectDrawable {
     TextStyle? style,
     bool? locked,
     TextDirection? direction,
+    bool? isEditable,
   }) {
     return TextDrawable(
       text: text ?? this.text,
@@ -110,6 +114,7 @@ class TextDrawable extends ObjectDrawable {
       assists: assists ?? this.assists,
       hidden: hidden ?? this.hidden,
       locked: locked ?? this.locked,
+      isEditable: isEditable ?? true,
     );
   }
 

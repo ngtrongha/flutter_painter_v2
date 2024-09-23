@@ -24,6 +24,8 @@ class _TextWidgetState extends State<_TextWidget> {
   /// This is used to listen to new text events to create new text drawables.
   StreamSubscription<PainterEvent>? controllerEventSubscription;
 
+  bool isEditable = true;
+
   @override
   void initState() {
     super.initState();
@@ -66,7 +68,12 @@ class _TextWidgetState extends State<_TextWidget> {
     final drawable = notification.drawable;
 
     if (drawable is TextDrawable) {
-      openTextEditor(drawable);
+      setState(() {
+        isEditable = drawable.isEditable;
+      });
+      if (isEditable) {
+        openTextEditor(drawable);
+      }
       // Mark notification as handled
       return true;
     }
@@ -92,6 +99,7 @@ class _TextWidgetState extends State<_TextWidget> {
 
     // Create a new hidden empty entry in the center of the painter
     final drawable = TextDrawable(
+      isEditable: isEditable,
       text: '',
       position: center,
       style: settings.textStyle.copyWith(color: Colors.red),
@@ -104,14 +112,15 @@ class _TextWidgetState extends State<_TextWidget> {
         selectedDrawable = drawable;
       });
     }
-
-    openTextEditor(drawable, true).then((value) {
-      if (mounted) {
-        setState(() {
-          selectedDrawable = null;
-        });
-      }
-    });
+    if (isEditable) {
+      openTextEditor(drawable, true).then((value) {
+        if (mounted) {
+          setState(() {
+            selectedDrawable = null;
+          });
+        }
+      });
+    }
   }
 
   /// Opens an editor to edit the text of [drawable].
