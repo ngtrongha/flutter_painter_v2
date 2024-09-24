@@ -102,7 +102,7 @@ class TextDrawable extends ObjectDrawable {
     TextStyle? style,
     bool? locked,
     TextDirection? direction,
-    bool? isEditable,
+    bool isEditable = true,
   }) {
     return TextDrawable(
       text: text ?? this.text,
@@ -114,7 +114,7 @@ class TextDrawable extends ObjectDrawable {
       assists: assists ?? this.assists,
       hidden: hidden ?? this.hidden,
       locked: locked ?? this.locked,
-      isEditable: isEditable ?? true,
+      isEditable: isEditable,
     );
   }
 
