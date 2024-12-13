@@ -2,8 +2,8 @@ import 'dart:typed_data';
 import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_painter/flutter_painter.dart';
+import 'package:flutter/material.dart'; 
+import 'package:flutter_painter_v2/flutter_painter.dart';
 
 import 'dart:ui' as ui;
 
